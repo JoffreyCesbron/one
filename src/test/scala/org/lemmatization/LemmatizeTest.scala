@@ -4,7 +4,7 @@ import org.scalatest.FunSuite
 
 class LemmatizeTest extends FunSuite {
 
-  val lemmatize = new Lemmatize(getClass.getResource("/french/fr-classique.dic").getPath,getClass.getResource("/french/fr-classique.aff").getPath)
+  val lemmatize = new Lemmatize(getClass.getResource("/french/fr-classique.dic").getPath, getClass.getResource("/french/fr-classique.aff").getPath)
 
   test("should parse the result") {
     // Given

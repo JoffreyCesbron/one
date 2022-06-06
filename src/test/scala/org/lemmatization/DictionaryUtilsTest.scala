@@ -22,7 +22,9 @@ class DictionaryUtilsTest extends FunSuite {
     val language = ""
     val dictionariesPath = "doesNotExist"
     // When Then
-    assertThrows[DirectoryMissingException]{getConfDictionary(language, dictionariesPath)}
+    assertThrows[DirectoryMissingException] {
+      getConfDictionary(language, dictionariesPath)
+    }
   }
 
   test("should get an error when the directory of the chosen language does not exist") {
@@ -30,7 +32,9 @@ class DictionaryUtilsTest extends FunSuite {
     val language = "italian"
     val dictionariesPath = getClass.getResource("/").getPath
     // When Then
-    assertThrows[DirectoryLanguageMissingException]{getConfDictionary(language, dictionariesPath)}
+    assertThrows[DirectoryLanguageMissingException] {
+      getConfDictionary(language, dictionariesPath)
+    }
   }
 
   test("should get an error when a conf file for a dictionary does not exist") {
@@ -38,7 +42,9 @@ class DictionaryUtilsTest extends FunSuite {
     val language = "english"
     val dictionariesPath = getClass.getResource("/").getPath
     // When Then
-    assertThrows[FileLanguageException]{getConfDictionary(language, dictionariesPath)}
+    assertThrows[FileLanguageException] {
+      getConfDictionary(language, dictionariesPath)
+    }
   }
 
 

@@ -1,7 +1,5 @@
 package org.common
 
-import scala.reflect.io.File
-
 object Utils extends Logging {
   case class Arguments(language: String = "", dictionariesPath: String = "", inputDirPath: String = "", outputDir: String = "")
 

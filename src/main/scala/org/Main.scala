@@ -28,7 +28,7 @@ object Main extends InitSparkJob with Logging {
   val colOutput = "output"
   val dfWithLemmas = df.select(col(colWords), convertUDF(col(colWords)).as(colOutput))
 
-  val nonExistingWord = dfWithLemmas.filter(dfWithLemmas(colOutput) === "").count()
+  val nonExistingWord = dfWithLemmas.filter(dfWithLemmas(colOutput) === "->").count()
   val wordWithLema = dfWithLemmas.filter(dfWithLemmas(colOutput).contains("+")).count()
 
   logger.info(s"non existing word is <${nonExistingWord}>, words with at least one lemma is <${wordWithLema}>, existing word with no lema is <${countDf - wordWithLema - nonExistingWord}>, <${countDf}> total words")

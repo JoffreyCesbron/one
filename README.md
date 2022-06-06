@@ -1,5 +1,8 @@
 # lemma
 
+The goal of the app is to take in input a csv file with one word by line and write back in another csv
+file the words and his lemmas if existings (separated by a plus)
+
 ## Using the App
 
 ### 1 - create the directories with the dictionaries you need
@@ -27,8 +30,8 @@ Ex:
 ### 3 - launch
 
 The input.csv file should contain at least one word.
-
-Once you have launched the job you will have in the specified output the result.
+Launch the job and get the result in the directory you specified.
+The words that does not exist will be present with the word and "-> does not exist"
 
 ## technical choices
 
@@ -42,14 +45,13 @@ If the dictionaries are on the S3 you can imagine a playbook that automatically 
 ## hesitations
 
 Do we want the output sorted in the same order than the input ?
-Do we want to remove the word that does not exist in the output ?
+Do we want to remove the word that does not exist in the output (words with "") ?
 
 ## improvements
 
-Find the files with extension name to reduce the mistakes
-Catch the exception if the input file is empty
+Catch the exception if the input file is empty or if there is a problem with the words in it (space or more than 2 words in a line)
 Test integration pour tester toute l'appli
 Test de performance sur des gros volumes de données
-
+Find the files with the extension and not the full name to reduce the mistakes
 
 
