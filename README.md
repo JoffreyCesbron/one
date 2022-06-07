@@ -43,14 +43,14 @@ If the dictionaries are on the S3 you can imagine a playbook that automatically 
 
 ## hesitations
 
-Do we want the output sorted in the same order than the input ?
+Do we want the output sorted in the same order than the input ? </br>
 Do we want to remove the word that does not exist in the output (words with ""), do we create a reject table with these words ?
 
 ## improvements
 
-Catch the exception if the input file is empty
-Add an integration to test all the application
-Performance test on all the application
-Find the files with the extension and not the full name to reduce the mistakes
+Catch the exception if the input file is empty </br>
+Add an integration to test all the application </br>
+Performance test on all the application </br>
+Find the files with the extension and not the full name to reduce the mistakes </br>
 Add a function in Lemmatize that takes a dataframe in input and returns the dataframe with the lemmas (to have less code in
 the main)
