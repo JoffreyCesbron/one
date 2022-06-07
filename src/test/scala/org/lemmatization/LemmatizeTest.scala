@@ -4,7 +4,7 @@ import org.scalatest.FunSuite
 
 class LemmatizeTest extends FunSuite {
 
-  val lemmatize = new Lemmatize(getClass.getResource("/french/fr-classique.dic").getPath, getClass.getResource("/french/fr-classique.aff").getPath)
+  val lemmatize = new Lemmatize(getClass.getResource("/french/french.dic").getPath, getClass.getResource("/french/french.aff").getPath)
 
   test("should parse the result") {
     // Given
@@ -18,6 +18,15 @@ class LemmatizeTest extends FunSuite {
   test("should return all lemmas for a word") {
     // Given
     val mot = "livre"
+    // When
+    val actual = lemmatize.getLemmas(mot)
+    // Then
+    assert(actual == "livre+livrer")
+  }
+
+  test("should return all lemmas for a word with a space") {
+    // Given
+    val mot = "livre "
     // When
     val actual = lemmatize.getLemmas(mot)
     // Then
@@ -39,6 +48,6 @@ class LemmatizeTest extends FunSuite {
     // When
     val actual = lemmatize.getLemmas(mot)
     // Then
-    assert(actual == "")
+    assert(actual == "aaaaa -> does not exist")
   }
 }

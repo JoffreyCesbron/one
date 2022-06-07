@@ -17,7 +17,7 @@ class DictionaryUtilsTest extends FunSuite {
     assert(actual.affFile == s"${dictionariesPath}french/french.aff")
   }
 
-  test("should get an error when the directory of the dictionaries does not exist") {
+  test("should get an error when the main directory of the dictionaries does not exist") {
     // Given
     val language = ""
     val dictionariesPath = "doesNotExist"

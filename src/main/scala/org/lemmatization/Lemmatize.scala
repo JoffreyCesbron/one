@@ -18,8 +18,9 @@ class Lemmatize(dictionaryPath: String, affixPath: String) {
   }
 
   def getLemmas(s: String): String = {
-    if (speller.spell(s))
-      return parseResult(speller.analyze(s).asScala.toList)
+    val sNoSpace = s.trim
+    if (speller.spell(sNoSpace))
+      return parseResult(speller.analyze(sNoSpace).asScala.toList)
     s"${s} -> does not exist"
   }
 }
