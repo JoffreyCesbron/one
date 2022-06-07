@@ -13,7 +13,7 @@ Inside any language folder you should place the 2 files (.aff and .dic) prefixed
 So if you want to use the french dictionary you can create a directory "dictionaries" and directory "french" in it.
 Inside the "french" directory you should place the 2 files "french.dic" and "french.aff"
 
-### 2 - launch the job
+### 2 - arguments
 
 To launch the job you have to launch it with the 4 arguments: 
 -i "absolute path to the input.csv file"
