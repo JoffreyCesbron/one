@@ -12,7 +12,10 @@ At the end of the execution the "outputDirPath" directory will contain the 4 fil
 The aim is to take the supplier data which corresponds to a description of cars to sell with information on it (ex: mileage, year of first regulation)
 and transform the data to enrich the database already existing on the website.
 We cannot take and enrich the database directly as some attributes are not the same, it's structured differently, and also it can be written differently (not the same language, abbreviation, normalization etc...).
-The aim data-flow is to execute the transformation so that at the end we get data that can be loaded directly in the database.
+The aim of the data-flow is to execute the transformation so that data are prepared, and we can do the matching with the database.
+Also we need to determine for every product if it is a new one, or existing one.
+For a new one we add it to the database, for an existing one, we have to check if it can enrich the current database.
+
 
 ### Question 5
 #### get a unique key
