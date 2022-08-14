@@ -49,9 +49,3 @@ Use ML to train and predict
 
 Find if there is some outliers, correct and/or put them in a reject table
 Write in other tables the data that cannot be normalized
-
-
-
-# one
-# one
-# one
