@@ -15,18 +15,12 @@ We cannot take and enrich the database directly as some attributes are not the s
 The aim data-flow is to execute the transformation so that at the end we get data that can be loaded directly in the database.
 
 ### Question 5
+#### get a unique key
 
-#### add other attributes
+A specific id for the car that ensure that the car is unique would be definitely the best option, but it's probably not possible.
+To have the name of the seller would help also. So we have to find another way
 
-We can enrich the data if the "make", "model" "variant" are the same for a product. For example, we could enrich the
-"Consumption" in our case. We can also enrich the attributes that have been normalized (ex for condition there
-is also Exposition model, for the color Anthracite).
-
-#### get an unique key
-
-The idea would be to get the name of the seller to be sure it's the same car, or a specific idea for the car that ensure that the car is unique, but it might not be possible...
-
-#### match car with all information that we have
+#### match cars with all information that we have
 
 We are not sure the products are the same car, even if we try to match a product with all the information that
 we have (if we had the city, mileage...).
@@ -43,7 +37,18 @@ Ideas to make match on the variant:
 - some words could be written with an abbreviation, so if it does not match we could try against with the abbreviation (ex: Avant, Avt...)
 - when there is no match we can enrich a mapping table when there is no match, or create new abbreviation so that next time it matches
 
-Use ML to train and predict
+#### calculate a score of similarity
+
+Some solutions exist also for this kind problem (Hamming distance, Levenshtein distance...) to measure the similarity.
+The idea would be to try a few algo to see the one that works better in our solution. We could do that on all attributes that we 
+have to match 2 cars.
+
+#### add other attributes and new lines
+
+If we could determine that the models are the same at least (not the same existing car), we could enrich  some attributes (ex for condition there
+is also Exposition model, for the color Anthracite).
+If we can determine it's the same car we can add information specific to the car like the mileage.
+If we see it's a new car we juste have to add it to the database with all the info that we have.
 
 ### Improvements
 
