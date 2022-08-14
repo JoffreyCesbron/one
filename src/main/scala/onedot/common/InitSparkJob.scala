@@ -7,7 +7,7 @@ abstract class InitSparkJob extends App {
 
   val spark = SparkSession.builder()
     .master("local")
-    .appName("lemmatization")
+    .appName("onedot")
     .getOrCreate();
 
   implicit val _spark = spark

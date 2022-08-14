@@ -1,29 +1,21 @@
 package onedot.common
 
 object Utils extends Logging {
-  case class Arguments(language: String = "", dictionariesPath: String = "", inputDirPath: String = "", outputDir: String = "")
+  case class Arguments(inputFilePath: String = "", outputDirPath: String = "")
 
   def get_args(args: Array[String]): Arguments = {
     val parser = new scopt.OptionParser[Arguments]("Parsing application") {
 
-      opt[String]('l', "language").
-        required().valueName("").action((value, arguments) => arguments.copy(language = value))
-
-      opt[String]('d', "dictionariesFolderPath").
-        required().valueName("").action((value, arguments) => arguments.copy(dictionariesPath = value))
-
-      opt[String]('i', "inputDirPath").
-        required().valueName("").action((value, arguments) => arguments.copy(inputDirPath = value))
+      opt[String]('i', "inputFilePath").
+        required().valueName("").action((value, arguments) => arguments.copy(inputFilePath = value))
 
       opt[String]('o', "outputDirPath").
-        required().valueName("").action((value, arguments) => arguments.copy(outputDir = value))
+        required().valueName("").action((value, arguments) => arguments.copy(outputDirPath = value))
 
     }
     parser.parse(args, Arguments()) map { config =>
-      logger.info(s"language chosen par the user is <${config.language}>")
-      logger.info(s"dictionaries folder is <${config.dictionariesPath}>")
-      logger.info(s"csv input file to lemmatize is <${config.inputDirPath}>")
-      logger.info(s"output path to lemmatize is <${config.outputDir}>")
+      logger.info(s"the input path file is <${config.inputFilePath}>")
+      logger.info(s"output directory is <${config.outputDirPath}>")
       return config
     } getOrElse {
       throw new Exception("some arguments are missing")
