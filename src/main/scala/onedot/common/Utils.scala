@@ -1,4 +1,4 @@
-package org.common
+package onedot.common
 
 object Utils extends Logging {
   case class Arguments(language: String = "", dictionariesPath: String = "", inputDirPath: String = "", outputDir: String = "")

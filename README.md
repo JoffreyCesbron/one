@@ -1,56 +1,55 @@
-# lemma
+### User Guide
 
-The goal of the app is to take in input a csv file with one word by line and write back another csv
-file with the input words and their lemmas (if existings).
+You can run the program with the Main object.
+The arguments are:
+- inputFilePath --> full path for the json file
+- outputDirPath --> directory where to write the result
 
-## Using the App
+At the end of the execution the "outputDirPath" directory will contain the 4 files corresponding to 4 steps.
 
-### 1 - create the directories with the dictionaries you need
+### Data-flow presentation
 
-Create a folder, for exemple "dictionaries". Inside this folder create a folder for each language you want to use with the app.
-Inside any language folder you should place the 2 files (.aff and .dic) prefixed with the language name. 
+The aim is to take the supplier data which corresponds to a description of cars to sell with information on it (ex: mileage, year of first regulation)
+and transform the data to enrich the database already existing on the website.
+We cannot take and enrich the database directly as some attributes are not the same, it's structured differently, and also it can be written differently (not the same language, abbreviation, normalization etc...).
+The aim data-flow is to execute the transformation so that at the end we get data that can be loaded directly in the database.
 
-So if you want to use the french dictionary you can create a directory "dictionaries" and directory "french" in it.
-Inside the "french" directory you should place the 2 files "french.dic" and "french.aff"
+### Question 5
 
-### 2 - arguments
+#### add other attributes
 
-To launch the job you have to launch it with the 4 arguments: 
--i "absolute path to the input.csv file"
--o "absolute path to the directory you want to write the result"
--l "the language you want to use"
--d "absolute path to the directory where all the dictionary are stored"
+We can enrich the data if the "make", "model" "variant" are the same for a product. For example, we could enrich the
+"Consumption" in our case. We can also enrich the attributes that have been normalized (ex for condition there
+is also Exposition model, for the color Anthracite).
 
-Ex:
--i /home/user/Desktop/input.csv
--o /home/user/Desktop/output
--l french
--d /home/user/Desktop/dictionaries
+#### get an unique key
 
-### 3 - launch
+The idea would be to get the name of the seller to be sure it's the same car, or a specific idea for the car that ensure that the car is unique, but it might not be possible...
 
-The input.csv file should contain at least one word. It there are some spaces before and after they will be removed.
-Launch the job and get the result in the directory you specified.
-The words that do not exist will be present with the word and "-> does not exist"
+#### match car with all information that we have
 
-## technical choices
+We are not sure the products are the same car, even if we try to match a product with all the information that
+we have (if we had the city, mileage...).
+It could be 2 different cars even if they have many characteristics in common but there might not be other options.
 
-To avoid any modifications on the code in case of a new dictionary the most simple was to create a directory external to the app that contains the files needed
-for the application to work.
-In case of a new dictionary you juste have to put the files in the directory as explained above. If you want to use this dictionary you 
-have to specify in the args that you want to use this one.
-If the dictionaries are on the S3 you can imagine a playbook that automatically put the dictionnaries in the right with the good name.
+There is also a problem regarding how the data are writen in the supplier and in the target. For example the model
+variant cannot be written the same, "RS6 Avant 5.0 V10 quattro" could be written:
+- "RS6 quattro Avant 5.0 V10" (words not in the same orders)
+- "RS6 Avt. quattro 5.0 V10" (abbreviation)
+- "RS6 Avt. quattro 5 V10" (missing letters/words)
 
-## hesitations
+Ideas to make match on the variant:
+- make a match even if the words are not in the same order
+- some words could be written with an abbreviation, so if it does not match we could try against with the abbreviation (ex: Avant, Avt...)
+- when there is no match we can enrich a mapping table when there is no match, or create new abbreviation so that next time it matches
 
-Do we want the output sorted in the same order than the input ? </br>
-Do we want to remove the word that does not exist in the output (words with ""), do we create a reject table with these words ?
+Use ML to train and predict
 
-## improvements
+### Improvements
 
-Catch the exception if the input file is empty </br>
-Add an integration to test all the application </br>
-Performance test on all the application </br>
-Find the files with the extension and not the full name to reduce the mistakes </br>
-Add a function in Lemmatize that takes a dataframe in input and returns the dataframe with the lemmas (to have less code in
-the main)
+Find if there is some outliers, correct and/or put them in a reject table
+Write in other tables the data that cannot be normalized
+
+
+
+# one

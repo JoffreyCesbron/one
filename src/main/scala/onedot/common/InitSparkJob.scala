@@ -1,4 +1,4 @@
-package org.common
+package onedot.common
 
 import org.apache.spark.sql.SparkSession
 
@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
 abstract class InitSparkJob extends App {
 
   val spark = SparkSession.builder()
-    .master("local[1]")
+    .master("local")
     .appName("lemmatization")
     .getOrCreate();
 

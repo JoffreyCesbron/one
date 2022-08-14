@@ -1,4 +1,4 @@
-package org.common
+package onedot.common
 
 import org.apache.log4j.{Level, Logger}
 
